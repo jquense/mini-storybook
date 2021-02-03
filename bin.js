@@ -28,7 +28,7 @@ yargs
 
     async ({ location, typescript }) => {
       location = path.resolve(location)
-      console.log('ASF', location)
+
       const plop = nodePlop(`${__dirname}/plopfile.js`)
       const newPkg = plop.getGenerator('mini-storybook')
 
@@ -53,7 +53,9 @@ yargs
     },
   )
   .command('start', true, async (argv) => {
-    const config = glob.sync('**/.app/webpack.config.js')[0]
+    const config = glob.sync('**/.app/webpack.config.js', {
+      ignore: ['**/node_modules/**'],
+    })[0]
     console.log(`Starting ms using config: ${config}`)
     await start({ ...argv, config: config })
   }).argv
