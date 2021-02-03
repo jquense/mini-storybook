@@ -1,0 +1,30 @@
+{
+  "name": "mini-storybook",
+  "version": "0.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "bin": {
+    "mini-storybook": "bin.js"
+  },
+  "dependencies": {
+    "@4c/start": "^2.3.0",
+    "@babel/core": "^7.12.13",
+    "@babel/preset-env": "^7.12.13",
+    "@babel/preset-react": "^7.12.13",
+    "@babel/preset-typescript": "^7.12.13",
+    "@types/react": "^17.0.1",
+    "autoprefixer": "^10.2.4",
+    "clsx": "^1.1.1",
+    "common-tags": "^1.8.0",
+    "glob": "^7.1.6",
+    "node-plop": "^0.26.2",
+    "postcss": "^8.2.4",
+    "tailwindcss": "^2.0.2",
+    "webpack": "^5.20.1",
+    "webpack-atoms": "^16.0.0",
+    "yargs": "^16.2.0"
+  },
+  "devDependencies": {
+    "typescript": "^4.1.3"
+  }
+}
