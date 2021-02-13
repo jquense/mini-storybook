@@ -5,7 +5,7 @@ module.exports = function preset(api, opts = {}) {
     presets: [
       '@babel/env',
       ['@babel/react', { development: true }],
-      opts.typescript && '@babel/typescript',
-    ].filter(boolean),
+      '@babel/typescript',
+    ],
   }
 }

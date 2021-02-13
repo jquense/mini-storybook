@@ -10,19 +10,22 @@ import { render } from 'react-dom'
 import usePopState, { RouterContext } from './usePopState'
 import '../setup'
 
-const storyRequire = require.context('../', false, /\.(j|t)sx?$/)
+const storyRequire = require.context('../../stories', false, /\.(j|t)sx?$/)
 
 const stories = []
 storyRequire.keys().forEach((filePath) => {
   const module = storyRequire(filePath)
   const dflt = module.default
   stories.push({
-    label:
-      dflt?.label ||
+    title:
+      dflt?.title ||
       filePath.slice(filePath.lastIndexOf('/') + 1, filePath.lastIndexOf('.')),
-    items: Object.entries(module).filter(
-      ([name, story]) => !name.startsWith('_') && typeof story === 'function',
-    ),
+    items: Object.entries(module)
+      .filter(
+        ([ident, story]) =>
+          !name.startsWith('_') && typeof story === 'function',
+      )
+      .map(([ident, story]) => [story.storyName || ident, story]),
   })
 })
 
@@ -58,7 +61,7 @@ function App({ stories, children }) {
   const CurrentStory = useMemo(() => {
     for (const s of stories) {
       for (const [name, story] of s.items) {
-        if (location.pathname === `/${s.label}/${name}`) return story
+        if (location.pathname === `/${s.title}/${name}`) return story
       }
     }
     return null
@@ -69,14 +72,14 @@ function App({ stories, children }) {
       <div className="container-md vh-100 w-full min-h-full grid grid-cols-12 overflow-y-auto">
         <div className="col-span-3 px-4 py-6 bg-blue-100 border-r border-blue-200">
           <ul>
-            {stories.map(({ label, items }) => (
-              <li key={label}>
+            {stories.map(({ title, items }) => (
+              <li key={title}>
                 <details>
-                  <summary className="mb-2 font-bold">{label}</summary>
+                  <summary className="mb-2 font-bold">{title}</summary>
                   <ul className="pl-4">
                     {items.map(([name, story]) => (
                       <li key={name}>
-                        <Link href={`/${label}/${name}`}>{name}</Link>
+                        <Link href={`/${title}/${name}`}>{name}</Link>
                       </li>
                     ))}
                   </ul>

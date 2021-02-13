@@ -5,6 +5,7 @@ const path = require('path')
 const yargs = require('yargs')
 const start = require('@4c/start')
 const { glob } = require('glob')
+const hasYarn = require('has-yarn')
 
 yargs
   .help()
@@ -38,7 +39,7 @@ yargs
 
       const result = await newPkg.runActions(answers)
 
-      if (result.failures) {
+      if (result.failures && result.failures.length) {
         result.failures.forEach(
           (f) =>
             f.error &&
@@ -47,15 +48,19 @@ yargs
         )
       } else {
         console.log('Your mini storybook has been set up. To start run:')
-        console.log('   yarn mini-storybook start')
+        console.log(`   ${hasYarn(location) ? 'yarn' : 'npm run'} storybook`)
         console.log('')
       }
     },
   )
   .command('start', true, async (argv) => {
-    const config = glob.sync('**/.mstorybook/webpack.config.js', {
+    const config = glob.sync('**/.mstorybook/app/webpack.config.js', {
       ignore: ['**/node_modules/**'],
     })[0]
-    console.log(`Starting ms using config: ${config}`)
-    await start({ ...argv, config: config })
+    if (config) {
+      console.log(`Starting mini storybook using config: ${config}`)
+      await start({ ...argv, config: config })
+    } else {
+      console.error('Could not locate a mini storybook configuration')
+    }
   }).argv

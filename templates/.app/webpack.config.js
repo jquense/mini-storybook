@@ -1,5 +1,5 @@
 const path = require('path')
-const { plugins, rules } = require('mini-storybook/webpack/utils')
+const { plugins, rules, loaders } = require('mini-storybook/webpack/utils')
 
 const tailwindConfig = require.resolve('../tailwind.config.js')
 
@@ -12,8 +12,10 @@ module.exports = {
   },
   module: {
     rules: [
-      { ...rules.js({ rootMode: 'upward' }), test: /\.[jt]sx?$/ },
-
+      rules.js({
+        // Delete this if you want to use our own project babel config
+        presets: ['mini-storybook/babel-preset'],
+      }),
       rules.postcss({
         postcssOptions: {
           plugins: require('mini-storybook/postcss')(tailwindConfig),
