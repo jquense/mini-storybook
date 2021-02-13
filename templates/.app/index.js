@@ -67,18 +67,20 @@ function App({ stories, children }) {
   return (
     <RouterContext.Provider value={router}>
       <div className="container-md vh-100 w-full min-h-full grid grid-cols-12 overflow-y-auto">
-        <div className="col-span-3 px-6 py-6 bg-blue-100 border-r border-blue-200">
+        <div className="col-span-3 px-4 py-6 bg-blue-100 border-r border-blue-200">
           <ul>
             {stories.map(({ label, items }) => (
               <li key={label}>
-                <div className="mb-2 font-bold">{label}</div>
-                <ul className="pl-4">
-                  {items.map(([name, story]) => (
-                    <li key={name}>
-                      <Link href={`/${label}/${name}`}>{name}</Link>
-                    </li>
-                  ))}
-                </ul>
+                <details>
+                  <summary className="mb-2 font-bold">{label}</summary>
+                  <ul className="pl-4">
+                    {items.map(([name, story]) => (
+                      <li key={name}>
+                        <Link href={`/${label}/${name}`}>{name}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                </details>
               </li>
             ))}
           </ul>
