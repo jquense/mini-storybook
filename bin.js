@@ -53,7 +53,7 @@ yargs
     },
   )
   .command('start', true, async (argv) => {
-    const config = glob.sync('**/.app/webpack.config.js', {
+    const config = glob.sync('**/.mstorybook/webpack.config.js', {
       ignore: ['**/node_modules/**'],
     })[0]
     console.log(`Starting ms using config: ${config}`)

@@ -8,7 +8,7 @@ import React, {
 } from 'react'
 import { render } from 'react-dom'
 import usePopState, { RouterContext } from './usePopState'
-import '../config/setup'
+import '../setup'
 
 const storyRequire = require.context('../', false, /\.(j|t)sx?$/)
 
