@@ -1,6 +1,4 @@
 @tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 html {
   text-rendering: optimizelegibility;
@@ -15,3 +13,6 @@ body {
   min-height: 100%;
   display: flex;
 }
+
+@tailwind components;
+@tailwind utilities;

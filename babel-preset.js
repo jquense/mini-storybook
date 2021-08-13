@@ -1,11 +1,12 @@
-const { boolean } = require('yargs')
+const { boolean } = require("yargs");
 
 module.exports = function preset(api, opts = {}) {
   return {
     presets: [
-      '@babel/env',
-      ['@babel/react', { development: true }],
-      '@babel/typescript',
+      "@babel/env",
+      ["@babel/react", { development: true }],
+      "@babel/typescript",
     ],
-  }
-}
+    plugin: ["macros"],
+  };
+};
