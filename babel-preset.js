@@ -7,6 +7,6 @@ module.exports = function preset(api, opts = {}) {
       ["@babel/react", { development: true }],
       "@babel/typescript",
     ],
-    plugin: ["macros"],
+    plugins: ["macros"],
   };
 };
