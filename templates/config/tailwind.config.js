@@ -1,5 +1,5 @@
 module.exports = {
-  purge: [
+  content: [
     `${__dirname}/app/*.js`,
     `${__dirname}/../stores/**/*.{js,jsx,html,css,vue,svelte,ts,tsx}`,
 
@@ -7,8 +7,6 @@ module.exports = {
     // "./src/**/*.{js,jsx,html,css,vue,svelte,ts,tsx}",
   ],
 
-  mode: "jit",
-  darkMode: false, // or 'media' or 'class'
   theme: {
     extend: {},
   },

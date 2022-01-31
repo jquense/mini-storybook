@@ -23,7 +23,7 @@
     "lodash": "^4.17.21",
     "node-plop": "^0.26.2",
     "postcss": "^8.3.6",
-    "tailwindcss": "^2.2.7",
+    "tailwindcss": "^3.0.18",
     "webpack": "^5.50.0",
     "webpack-atoms": "^17.1.0",
     "yargs": "^17.1.0"
